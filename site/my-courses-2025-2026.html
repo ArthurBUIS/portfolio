@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Courses 2025-2026 — Arthur Buis</title>
+<meta name="description" content="Courses followed by Arthur Buis in 2025-2026.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<header class="site-header" data-chrome="header"></header>
+
+<div class="page-hero">
+  <div class="page-hero-in">
+    <span class="badge" id="y-school"></span>
+    <h1 id="y-title"></h1>
+    <p id="y-blurb"></p>
+  </div>
+</div>
+<nav class="year-nav" id="ynav"></nav>
+<div class="page-container wide" id="ybody"></div>
+<footer class="site-footer" data-chrome="footer"></footer>
+<script src="assets/js/data.js"></script>
+<script src="assets/js/courses.js"></script>
+<script src="assets/js/site.js"></script>
+<script>
+
+const YEAR = "2025-2026";
+function paintPage(){
+  const y = COURSES[YEAR];
+  document.title = t({fr:"Cours",en:"Courses"}) + " " + YEAR + " — " + DATA.name;
+  $("y-school").textContent = t(y.school);
+  $("y-title").textContent  = t({fr:"Mes cours",en:"My Courses"}) + " \u2014 " + YEAR;
+  $("y-blurb").textContent  = t(y.programme);
+
+  $("ynav").innerHTML = COURSES.years.map(v =>
+    `<a href="my-courses-${v}.html" class="${v===YEAR?"active":""}">${v}</a>`).join("");
+
+  let html = `<div class="content-block"><p>${t(y.blurb)}</p></div>`;
+  if (y.semesters.length){
+    html += y.semesters.map(s => `
+      <div class="semester-block">
+        <h2>${t(s.name)}</h2>
+        <p class="sub">${t(y.programme)}</p>
+        ${s.courses.map(c => `
+          <div class="course-item">
+            <h3>${t(c.title)}</h3>
+            <ul>${t(c.topics).map(x=>`<li>${x}</li>`).join("")}</ul>
+          </div>`).join("")}
+      </div>`).join("");
+  }
+  if (y.todo) html += `<div class="placeholder-note">${t(y.todo)}</div>`;
+  if (y.note) html += `<div class="placeholder-note" style="margin-top:18px">${t(y.note)}</div>`;
+  $("ybody").innerHTML = html;
+}
+
+</script>
+</body>
+</html>

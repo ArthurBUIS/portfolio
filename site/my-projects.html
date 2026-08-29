@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Academic Projects — Arthur Buis</title>
+<meta name="description" content="Academic projects by Arthur Buis — computer vision, LLMs, graphs and optimisation.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<header class="site-header" data-chrome="header"></header>
+
+<div class="page-hero">
+  <div class="page-hero-in">
+    <span class="badge" id="pr-badge"></span>
+    <h1 id="pr-title"></h1>
+    <p id="pr-sub"></p>
+  </div>
+</div>
+<div class="page-container projects-list" id="plist"></div>
+<footer class="site-footer" data-chrome="footer"></footer>
+<script src="assets/js/data.js"></script>
+<script src="assets/js/site.js"></script>
+<script>
+
+function paintPage(){
+  document.title = t({fr:"Projets académiques",en:"Academic Projects"}) + " — " + DATA.name;
+  $("pr-badge").textContent = t({fr:"Travaux académiques",en:"Academic work"});
+  $("pr-title").textContent = t({fr:"Projets académiques",en:"Academic Projects"});
+  $("pr-sub").textContent   = t({fr:"Projets de recherche appliquée menés à l'École Polytechnique et en classe préparatoire.",
+                            en:"Applied research projects carried out at École Polytechnique and in classe préparatoire."});
+
+  const years = [...new Set(DATA.projects.map(p=>p.year))];
+  $("plist").innerHTML = years.map(y=>`
+    <h2>${y}</h2>
+    <ul>${DATA.projects.filter(p=>p.year===y).map(p=>`
+      <li><a class="project-row" href="${p.slug}.html">
+        <span class="emoji">${p.icon}</span>
+        <div><h3>${t(p.title)}</h3><span>${t(p.summary)}</span></div>
+        <span class="go">&rarr;</span>
+      </a></li>`).join("")}</ul>
+    <div class="year-sep"></div>`).join("");
+}
+
+</script>
+</body>
+</html>

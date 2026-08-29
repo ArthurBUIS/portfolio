@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Professional Projects — Arthur Buis</title>
+<meta name="description" content="Professional projects by Arthur Buis — real-time vision, medical NLP, leadership.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<header class="site-header" data-chrome="header"></header>
+
+<div class="page-hero pro">
+  <div class="page-hero-in">
+    <span class="badge" id="pp-badge"></span>
+    <h1 id="pp-title"></h1>
+    <p id="pp-sub"></p>
+  </div>
+</div>
+<div class="page-container" id="prolist"></div>
+<footer class="site-footer" data-chrome="footer"></footer>
+<script src="assets/js/data.js"></script>
+<script src="assets/js/site.js"></script>
+<script>
+
+function paintPage(){
+  document.title = t({fr:"Projets professionnels",en:"Professional Projects"}) + " — " + DATA.name;
+  $("pp-badge").textContent = t({fr:"En entreprise",en:"On placement"});
+  $("pp-title").textContent = t({fr:"Projets professionnels",en:"Professional Projects"});
+  $("pp-sub").textContent   = t({fr:"Ce que j'ai livré en stage et sur le terrain.",en:"What I shipped on placement and in the field."});
+
+  $("prolist").innerHTML = DATA.proProjects.map(p=>`
+    <div class="content-block">
+      <h2>${p.icon} ${t(p.title)}</h2>
+      <h3>${t(p.org)} &bull; ${t(p.when)}</h3>
+      <p>${t(p.summary)}</p>
+      <ul>${t(p.work).map(x=>`<li>${x}</li>`).join("")}</ul>
+      <div class="tags">${p.tags.map(x=>`<span class="tag">${x}</span>`).join("")}</div>
+    </div>`).join("");
+}
+
+</script>
+</body>
+</html>

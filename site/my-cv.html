@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CV — Arthur Buis</title>
+<meta name="description" content="CV of Arthur Buis — AI, data science and computer vision.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<header class="site-header" data-chrome="header"></header>
+
+<div class="page-hero">
+  <div class="page-hero-in">
+    <span class="badge" id="c-badge"></span>
+    <h1 id="c-title"></h1>
+    <p id="c-sub"></p>
+    <p style="margin-top:26px"><a class="btn btn-ghost" id="c-dl" href="cv.pdf" download></a></p>
+  </div>
+</div>
+<div class="page-container wide">
+  <iframe class="cv-frame" id="c-frame" title="CV"></iframe>
+</div>
+<footer class="site-footer" data-chrome="footer"></footer>
+<script src="assets/js/data.js"></script>
+<script src="assets/js/site.js"></script>
+<script>
+
+function paintPage(){
+  document.title = "CV — " + DATA.name;
+  $("c-badge").textContent = t({fr:"Curriculum vitae",en:"Curriculum vitae"});
+  $("c-title").textContent = t({fr:"Mon CV",en:"My CV"});
+  $("c-sub").textContent   = t({fr:"Le parcours complet en une page. Dépose ton PDF à côté de ce fichier sous le nom cv.pdf.",
+                           en:"The whole thing on one page. Drop your PDF next to this file, named cv.pdf."});
+  $("c-dl").textContent    = t({fr:"Télécharger le PDF",en:"Download the PDF"});
+  $("c-dl").href = DATA.cv;
+  $("c-frame").src = DATA.cv;
+}
+
+</script>
+</body>
+</html>

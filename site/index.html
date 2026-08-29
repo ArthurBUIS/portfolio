@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Arthur Buis — Portfolio</title>
+<meta name="description" content="Portfolio of Arthur Buis — Ecole Polytechnique graduate engineer in applied mathematics and computer science, incoming M.Sc. Bioinformatics student at DTU.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<header class="site-header" data-chrome="header"></header>
+
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="avatar-wrap">
+      <div class="ring"></div><div class="ring2"></div>
+      <div class="avatar" id="avatar"></div>
+    </div>
+    <div class="hero-text">
+      <h1 id="h-name"></h1>
+      <p class="hero-sub" id="h-role"></p>
+      <p class="hero-desc" id="h-lede"></p>
+      <div class="hero-cta">
+        <a class="btn" href="my-projects.html" id="h-cta1"></a>
+        <a class="btn btn-ghost" href="my-cv.html" id="h-cta2"></a>
+      </div>
+      <div class="hero-stats" id="stats"></div>
+    </div>
+  </div>
+</div>
+
+<div class="nav-cards" id="navcards"></div>
+
+<section class="panel panel-white">
+  <h2 class="section-title" id="t-exp"></h2>
+  <div class="timeline" id="exp"></div>
+</section>
+
+<section class="panel panel-rose">
+  <h2 class="section-title" id="t-edu"></h2>
+  <div class="timeline" id="edu"></div>
+</section>
+
+<section class="panel panel-grey">
+  <h2 class="section-title" id="t-skill"></h2>
+  <div class="grid" id="skills"></div>
+</section>
+
+<section class="panel panel-white">
+  <h2 class="section-title" id="t-out"></h2>
+  <div class="grid" id="outside"></div>
+</section>
+<footer class="site-footer" data-chrome="footer"></footer>
+<script src="assets/js/data.js"></script>
+<script src="assets/js/site.js"></script>
+<script>
+
+function paintPage(){
+  document.title = DATA.name + " — Portfolio";
+  $("avatar").innerHTML = DATA.photo ? `<img src="${DATA.photo}" alt="${DATA.name}">` : DATA.initials;
+  "h-name h-role h-lede h-cta1 h-cta2".split(" ").forEach((id,i)=>{
+    document.getElementById(id).textContent = t([DATA.name,DATA.role,DATA.lede,DATA.cta1,DATA.cta2][i]);
+  });
+  $("t-exp").textContent   = t({fr:"Parcours Professionnel",en:"Professional Experience"});
+  $("t-edu").textContent   = t({fr:"Formation",en:"Education"});
+  $("t-skill").textContent = t({fr:"Domaines d'Expertise",en:"Areas of Expertise"});
+  $("t-out").textContent   = t({fr:"Hors des écrans",en:"Away from the Screen"});
+
+  $("stats").innerHTML = DATA.stats.map(s=>`<div class="stat"><b>${s.v}</b><span>${t(s)}</span></div>`).join("");
+
+  $("navcards").innerHTML = DATA.navcards.map(c=>`
+    <a class="nav-card ${c.cls}" href="${c.href}">
+      <div class="card-bg"></div>
+      <div class="card-content">
+        <span class="card-icon">${c.icon}</span>
+        <h3>${t(c.title)}</h3>
+        <p>${t(c.desc)}</p>
+        <span class="card-arrow">&rarr;</span>
+      </div>
+    </a>`).join("");
+
+  const tl = list => list.map(i=>`
+    <article class="tl-item">
+      <div class="tl-icon">${i.icon}</div>
+      <div class="tl-body">
+        <h3>${t(i.role)}</h3>
+        <h4>${t(i.org)} &bull; ${t(i.when)}</h4>
+        <p>${t(i.desc)}</p>
+        <div class="tags">${i.tags.map(x=>`<span class="tag">${x}</span>`).join("")}</div>
+      </div>
+    </article>`).join("");
+  $("exp").innerHTML = tl(DATA.experience);
+  $("edu").innerHTML = tl(DATA.education);
+
+  const cards = list => list.map(s=>`
+    <div class="card centered">
+      <span class="emoji">${s.icon}</span>
+      <h4>${t(s.title)}</h4>
+      <p>${t(s.items)}</p>
+      <span class="rule"></span>
+    </div>`).join("");
+  $("skills").innerHTML  = cards(DATA.skills);
+  $("outside").innerHTML = cards(DATA.outside);
+}
+
+</script>
+</body>
+</html>
