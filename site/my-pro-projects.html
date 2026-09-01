@@ -32,14 +32,42 @@ function paintPage(){
   $("pp-title").textContent = t({fr:"Projets professionnels",en:"Professional Projects"});
   $("pp-sub").textContent   = t({fr:"Ce que j'ai livré en stage et sur le terrain.",en:"What I shipped on placement and in the field."});
 
-  $("prolist").innerHTML = DATA.proProjects.map(p=>`
-    <div class="content-block">
-      <h2>${p.icon} ${t(p.title)}</h2>
-      <h3>${t(p.org)} &bull; ${t(p.when)}</h3>
-      <p>${t(p.summary)}</p>
-      <ul>${t(p.work).map(x=>`<li>${x}</li>`).join("")}</ul>
-      <div class="tags">${p.tags.map(x=>`<span class="tag">${x}</span>`).join("")}</div>
-    </div>`).join("");
+  const L = {
+    tools:      { fr: "Outils & technologies", en: "Tools & technologies" },
+    skills:     { fr: "Compétences développées", en: "Skills developed" },
+    challenges: { fr: "Défis techniques", en: "Technical challenges" }
+  };
+  const figure = f => `<figure class="proj-figure"><img src="${f.src}" alt="${t(f.caption) || ""}" loading="lazy">${f.caption ? `<figcaption>${t(f.caption)}</figcaption>` : ""}</figure>`;
+  const pill = x => `<span class="tag">${x}</span>`;
+  $("prolist").innerHTML = DATA.proProjects.map(p=>{
+    const meta = [t(p.org), t(p.when), p.kind ? t(p.kind) : null].filter(Boolean).join(" &middot; ");
+    const skills = t(p.skills || p.work);
+    const tools  = p.tools || p.tags;
+    const topics = (p.topics && p.topics.length) ? p.topics : (tools || []).slice(0, 5);
+    const figs = p.figures && p.figures.length
+      ? (p.figures.length === 1 ? figure(p.figures[0])
+         : `<div class="proj-gallery">${p.figures.map(figure).join("")}</div>`)
+      : "";
+    return `
+    <details class="content-block pro-project">
+      <summary>
+        <span class="pro-icon">${p.icon || ""}</span>
+        <h2>${t(p.title)}</h2>
+        <span class="pro-meta">${meta}</span>
+        <span class="pro-desc">${t(p.description || p.summary)}</span>
+        ${topics.length ? `<span class="pro-topics">${topics.map(pill).join("")}</span>` : ""}
+      </summary>
+      <div class="pro-body">
+        ${figs}
+        ${tools && tools.length ? `<h3>${t(L.tools)}</h3>
+        <div class="tags">${tools.map(pill).join("")}</div>` : ""}
+        ${skills && skills.length ? `<h3>${t(L.skills)}</h3>
+        <ul>${skills.map(x=>`<li>${x}</li>`).join("")}</ul>` : ""}
+        ${p.challenges ? `<h3>${t(L.challenges)}</h3>
+        <p>${t(p.challenges)}</p>` : ""}
+      </div>
+    </details>`;
+  }).join("");
 }
 
 </script>

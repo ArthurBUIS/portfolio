@@ -8,9 +8,57 @@ const $ = id => document.getElementById(id);
 const t = v => (v && typeof v === "object" && "fr" in v) ? v[lang] : v;
 const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 
+/* -----------------------------------------------------------------
+   Rich project body — an array of blocks, grouped into .content-block
+   sections under each "h2". Block types:
+     { type:"h2",  text:{fr,en} }          section heading
+     { type:"h3",  text:{fr,en} }          sub-heading
+     { type:"p",   text:{fr,en} }          paragraph
+     { type:"ul",  items:[{fr,en}, ...] }  bullet list
+     { type:"img", src, alt:{fr,en}, caption:{fr,en} }        one figure
+     { type:"gallery", items:[{src, caption:{fr,en}}, ...] }  row of figures
+     { type:"code", text, lang }           code block
+     { type:"table", head:[{fr,en}...], rows:[[{fr,en}...], ...] }
+     { type:"tags", items:["...","..."] }  tag pills
+   Any text value may be a plain string or an {fr,en} object.
+   ----------------------------------------------------------------- */
+function projectBody(body){
+  if (!Array.isArray(body)) return "";
+  const fig = (src, cap) => `
+      <figure class="proj-figure">
+        <img src="${esc(src)}" alt="${esc(t(cap) || "")}" loading="lazy">
+        ${cap ? `<figcaption>${t(cap)}</figcaption>` : ""}
+      </figure>`;
+  const one = b => {
+    switch (b.type){
+      case "h3":      return `<h3>${t(b.text)}</h3>`;
+      case "p":       return `<p>${t(b.text)}</p>`;
+      case "ul":      return `<ul>${b.items.map(x => `<li>${t(x)}</li>`).join("")}</ul>`;
+      case "img":     return fig(b.src, b.caption);
+      case "gallery": return `<div class="proj-gallery">${b.items.map(it => fig(it.src, it.caption)).join("")}</div>`;
+      case "code":    return `<pre class="proj-code"><code>${esc(b.text)}</code></pre>`;
+      case "table":   return `<div class="proj-table-wrap"><table class="proj-table">`
+        + `<thead><tr>${b.head.map(h => `<th>${t(h)}</th>`).join("")}</tr></thead>`
+        + `<tbody>${b.rows.map(r => `<tr>${r.map(c => `<td>${t(c)}</td>`).join("")}</tr>`).join("")}</tbody>`
+        + `</table></div>`;
+      case "tags":    return `<div class="tags">${b.items.map(x => `<span class="tag">${x}</span>`).join("")}</div>`;
+      default:        return "";
+    }
+  };
+  const groups = [];
+  let cur = null;
+  for (const b of body){
+    if (b.type === "h2"){ cur = { heading: b.text, html: "" }; groups.push(cur); continue; }
+    if (!cur){ cur = { heading: null, html: "" }; groups.push(cur); }
+    cur.html += one(b);
+  }
+  return groups.map(g =>
+    `<div class="content-block">${g.heading ? `<h2>${t(g.heading)}</h2>` : ""}${g.html}</div>`).join("");
+}
+
 const NAV = [
   { href: "index.html",                 label: { fr: "Accueil",     en: "Home" } },
-  { href: "my-profile.html",            label: { fr: "Profil",      en: "Profile" } },
+  { href: "my-profile.html",            label: { fr: "À propos",    en: "About" } },
   { href: "my-courses-2021-2022.html",  label: { fr: "Cours",       en: "Courses" } },
   { href: "my-projects.html",           label: { fr: "Projets",     en: "Projects" } },
   { href: "my-pro-projects.html",       label: { fr: "Pro",         en: "Professional" } },

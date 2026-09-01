@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Profile — Arthur Buis</title>
-<meta name="description" content="Profile of Arthur Buis — background, experience, education and skills.">
+<title>About — Arthur Buis</title>
+<meta name="description" content="About Arthur Buis — École Polytechnique graduate engineer, M.Sc. Bioinformatics student at DTU, working towards a career in AI for healthcare.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -14,58 +14,74 @@
 <header class="site-header" data-chrome="header"></header>
 
 <div class="page-hero">
-  <div class="page-hero-in">
-    <span class="badge" id="p-badge"></span>
-    <h1 id="p-title"></h1>
-    <p id="p-sub"></p>
+  <div class="page-hero-in about-hero">
+    <span class="eyebrow" id="a-eyebrow"></span>
+    <h1 id="a-heading"></h1>
+    <p class="about-tagline" id="a-tagline"></p>
+    <div class="about-id">
+      <div class="about-name" id="a-name"></div>
+      <div class="about-role" id="a-role"></div>
+    </div>
+    <div class="about-facts" id="a-facts"></div>
   </div>
 </div>
-<div class="page-container" id="profile"></div>
+
+<div class="page-container about" id="about"></div>
 <footer class="site-footer" data-chrome="footer"></footer>
 <script src="assets/js/data.js"></script>
 <script src="assets/js/site.js"></script>
 <script>
 
 function paintPage(){
-  document.title = t({fr:"Profil",en:"Profile"}) + " — " + DATA.name;
-  $("p-badge").textContent = t({fr:"À propos",en:"About"});
-  $("p-title").textContent = DATA.name;
-  $("p-sub").textContent   = t(DATA.role);
+  const P = DATA.profile;
+  document.title = t({fr:"À propos",en:"About"}) + " — " + DATA.name;
 
-  const li = a => a.map(x=>`<li>${x}</li>`).join("");
-  $("profile").innerHTML = `
-    <div class="content-block">
-      <h2>${t({fr:"Qui je suis",en:"About Me"})}</h2>
-      <p>${t(DATA.lede)}</p>
-      <p>${t({fr:"Mon travail se situe à l'intersection des mathématiques appliquées et de l'informatique : construire des modèles qui tiennent la route sur des données réelles, et les amener jusqu'à un système qui tourne. La bioinformatique est la suite logique — c'est un domaine où la qualité de la modélisation compte autant que la qualité du code.",
-                 en:"My work sits at the intersection of applied mathematics and computer science: building models that hold up on real data, and taking them through to a system that runs. Bioinformatics is the logical next step — a field where the quality of the modelling matters as much as the quality of the code."})}</p>
-    </div>
+  $("a-eyebrow").textContent = t(P.eyebrow);
+  $("a-heading").textContent = t(P.heading);
+  $("a-tagline").textContent = t(P.tagline);
+  $("a-name").textContent    = DATA.name;
+  $("a-role").textContent    = t(P.roleShort);
 
-    <div class="content-block">
-      <h2>${t({fr:"Expérience",en:"Experience"})}</h2>
-      <ul>${li(DATA.experience.map(e=>`<strong>${t(e.role)}</strong> — ${t(e.org)}, ${t(e.when)}`))}</ul>
-    </div>
+  $("a-facts").innerHTML = P.facts.map(f => `
+    <div class="fact">
+      <span class="fact-ic">${f.icon}</span>
+      <span class="fact-txt">
+        <span class="fact-label">${t(f.label)}</span>
+        <span class="fact-value">${t(f.value)}</span>
+      </span>
+    </div>`).join("");
 
-    <div class="content-block">
-      <h2>${t({fr:"Formation",en:"Education"})}</h2>
-      <ul>${li(DATA.education.map(e=>`<strong>${t(e.role)}</strong> — ${t(e.org)}, ${t(e.when)}`))}</ul>
-    </div>
+  const section = (s, extra = "") => `
+    <section class="about-section">
+      <span class="eyebrow">${t(s.eyebrow)}</span>
+      ${s.title ? `<h2>${t(s.title)}</h2>` : ""}
+      ${s.body ? `<p>${t(s.body)}</p>` : ""}
+      ${extra}
+    </section>`;
 
-    <div class="content-block">
-      <h2>${t({fr:"Compétences",en:"Skills"})}</h2>
-      ${DATA.skills.map(s=>`<h3>${s.icon} ${t(s.title)}</h3><p>${t(s.items)}</p>`).join("")}
-    </div>
-
-    <div class="content-block">
-      <h2>${t({fr:"Hors des écrans",en:"Away from the Screen"})}</h2>
-      ${DATA.outside.map(o=>`<h3>${o.icon} ${t(o.title)}</h3><p>${t(o.items)}</p>`).join("")}
-    </div>
-
-    <div class="content-block">
-      <h2>${t({fr:"Me contacter",en:"Get in Touch"})}</h2>
-      <p>${t(DATA.contact_lede)}</p>
-      <p><a class="btn" href="mailto:${DATA.email}">${DATA.email}</a></p>
+  const choices = `
+    <div class="choice-grid">${P.choices.items.map(c => `
+      <article class="choice">
+        <span class="choice-ic">${c.icon}</span>
+        <h3>${t(c.title)}</h3>
+        <p class="choice-sub">${t(c.sub)}</p>
+        <p>${t(c.body)}</p>
+      </article>`).join("")}
     </div>`;
+
+  const cvLabel   = t({fr:"Voir mon CV", en:"View my CV"});
+  const projLabel = t({fr:"Mes projets", en:"My projects"});
+  const closing = `
+    <section class="about-section about-closing">
+      <span class="eyebrow">${t(P.closing.eyebrow)}</span>
+      <p>${t(P.closing.body)}</p>
+      <div class="about-cta">
+        <a class="btn" href="my-cv.html">${cvLabel}</a>
+        <a class="btn btn-line" href="my-projects.html">${projLabel} &rarr;</a>
+      </div>
+    </section>`;
+
+  $("about").innerHTML = section(P.story) + section(P.choices, choices) + closing;
 }
 
 </script>

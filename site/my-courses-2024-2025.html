@@ -46,10 +46,11 @@ function paintPage(){
         <h2>${t(s.name)}</h2>
         <p class="sub">${t(y.programme)}</p>
         ${s.courses.map(c => `
-          <div class="course-item">
-            <h3>${t(c.title)}</h3>
-            <ul>${t(c.topics).map(x=>`<li>${x}</li>`).join("")}</ul>
-          </div>`).join("")}
+          <details class="course-item">
+            <summary>${t(c.title)}</summary>
+            ${c.meta ? `<p class="course-meta">${t(c.meta)}</p>` : ""}
+            <ul>${(t(c.content) || t(c.topics) || []).map(x=>`<li>${x}</li>`).join("")}</ul>
+          </details>`).join("")}
       </div>`).join("");
   }
   if (y.todo) html += `<div class="placeholder-note">${t(y.todo)}</div>`;

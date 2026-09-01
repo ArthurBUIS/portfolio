@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="620" viewBox="0 0 1200 620" role="img" aria-label="image placeholder">
+  <rect width="1200" height="620" fill="#eef1f6"/>
+  <rect x="1.5" y="1.5" width="1197" height="617" fill="none" stroke="#c3ccdb" stroke-width="3" stroke-dasharray="12 9"/>
+  <g fill="#9aa6b8" font-family="system-ui, -apple-system, Segoe UI, sans-serif" text-anchor="middle">
+    <text x="600" y="300" font-size="40" font-weight="600">image placeholder</text>
+    <text x="600" y="348" font-size="22">your figure / screenshot / diagram goes here</text>
+  </g>
+</svg>

@@ -33,7 +33,14 @@ function paintPage(){
   $("d-when").textContent    = t(p.when);
   $("d-title").textContent   = p.icon + " " + t(p.title);
   $("d-summary").textContent = t(p.summary);
-  $("detail").innerHTML = `
+  const back = `<p><a class="btn" href="my-projects.html">&larr; ${t({fr:"Tous les projets",en:"All projects"})}</a></p>`;
+  if (Array.isArray(p.body) && p.body.length){
+    const tagBlock = (p.tags && p.tags.length)
+      ? `<div class="content-block"><div class="tags">${p.tags.map(x=>`<span class="tag">${x}</span>`).join("")}</div></div>`
+      : "";
+    $("detail").innerHTML = projectBody(p.body) + tagBlock + back;
+  } else {
+    $("detail").innerHTML = `
     <div class="content-block">
       <h2>${t({fr:"Le problème",en:"The problem"})}</h2>
       <p>${t(p.context)}</p>
@@ -42,8 +49,8 @@ function paintPage(){
       <h2>${t({fr:"Ce que j'ai fait",en:"What I did"})}</h2>
       <ul>${t(p.work).map(x=>`<li>${x}</li>`).join("")}</ul>
       <div class="tags">${p.tags.map(x=>`<span class="tag">${x}</span>`).join("")}</div>
-    </div>
-    <p><a class="btn" href="my-projects.html">&larr; ${t({fr:"Tous les projets",en:"All projects"})}</a></p>`;
+    </div>` + back;
+  }
 }
 
 </script>

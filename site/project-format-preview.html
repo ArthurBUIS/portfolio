@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Project page format — preview</title>
+<meta name="robots" content="noindex">
+<meta name="description" content="Layout preview for the rich project-page format. Not linked from the site.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<header class="site-header" data-chrome="header"></header>
+
+<div class="page-hero">
+  <div class="page-hero-in">
+    <span class="badge">Layout preview — not a real project</span>
+    <h1>🤖 Real-time robot control</h1>
+    <p>This page only exists to preview the rich project-page format on your site. Replace it with real projects once the format is approved.</p>
+  </div>
+</div>
+<div class="page-container" id="detail"></div>
+<footer class="site-footer" data-chrome="footer"></footer>
+<script src="assets/js/data.js"></script>
+<script src="assets/js/site.js"></script>
+<script>
+
+/* Demo content built straight from the example you shared, to exercise every
+   block type: h2 / h3 / p / ul / img / gallery / code / table / tags.
+   Strings here are plain (English only) — real projects use {fr,en}. */
+const DEMO = [
+  { type:"h2", text:"Introduction" },
+  { type:"p",  text:"In the context of our real-time development project, we were tasked with designing and implementing various functionalities for a robot. The primary objective was to manage the robot's different tasks efficiently and securely using synchronization tools such as mutexes and semaphores. This report gives an overview of the project, the challenges encountered, and the solutions implemented." },
+  { type:"img", src:"img/_placeholder.svg", caption:"Robot project diagram — overall architecture" },
+
+  { type:"h2", text:"Project" },
+  { type:"p",  text:"The project involved developing several functionalities for a robot, including camera management, arena detection, and task synchronization. We used FreeRTOS to manage real-time tasks and ensure safe concurrent execution." },
+  { type:"h3", text:"Project functionalities" },
+  { type:"table",
+    head:["Function", "Behaviour", "Inputs", "Outputs"],
+    rows:[
+      ["Start server", "Launch the server. On failure, display a message and stop the program; otherwise emit “server started”.", "Event: Start\nData: inputStream", "Event: Server started"],
+      ["Connect to monitor", "Wait for “server started”, call AcceptClient and wait for “open socket”. If ok, emit “connection established”.", "Event: Server started", "Event: connection established"],
+      ["Set up communication", "Wait for “open comRobot”. Set up communication with the robot. Post messageToMonACK or messageToMonNAC and update the robot com status.", "Event: open comRobot\nData: robot com status", "Message post"],
+      ["Move robot", "Every 100 ms, if “robot started” is true, read “movement” and send the order; otherwise do nothing.", "Data: robot started", "Order"],
+      ["Display image", "Wait for “display image”. Every 50 ms, if the camera is open, take a frame; draw the arena when “display arena” is set; post the image for the monitor.", "Event: Display image\nData: camera open", "—"]
+    ] },
+  { type:"img", src:"img/_placeholder.svg", caption:"Task communication graph" },
+
+  { type:"h2", text:"Existing functionalities" },
+  { type:"p",  text:"Before the new functionalities we implemented, several key pieces were already in place:" },
+  { type:"h3", text:"Server functionality" },
+  { type:"p",  text:"Handles communication between the robot and external systems, including receiving commands and sending status updates." },
+  { type:"h3", text:"Monitor connection" },
+  { type:"p",  text:"The connection with the monitor is established, letting the robot send real-time data and receive instructions from the monitoring system." },
+  { type:"h3", text:"Robot movement" },
+  { type:"p",  text:"Moving the robot is already in place, letting it navigate its environment based on the commands received." },
+  { type:"h3", text:"Battery level reading" },
+  { type:"p",  text:"Monitors the robot's battery status so it always has enough power for its tasks, and can alert the system when the level is low — preventing unexpected shutdowns." },
+
+  { type:"h2", text:"Camera management" },
+  { type:"p",  text:"Camera management covers opening, closing, and capturing images. We used mutexes to protect access to shared resources such as the camera state and the camera object itself." },
+  { type:"code", lang:"c", text:"static SemaphoreHandle_t cameraMutex;\n\nvoid camera_open(void) {\n    xSemaphoreTake(cameraMutex, portMAX_DELAY);\n    if (!camera.isOpen()) {\n        camera.open();\n        cameraState = CAMERA_OPEN;\n    }\n    xSemaphoreGive(cameraMutex);\n}" },
+  { type:"gallery", items:[
+    { src:"img/_placeholder.svg", caption:"Camera task — state machine" },
+    { src:"img/_placeholder.svg", caption:"Captured frame with overlay" }
+  ] },
+
+  { type:"h2", text:"Arena detection" },
+  { type:"p",  text:"For arena detection, a function is called when the user presses a specific button. It uses semaphores to synchronize execution and guarantee that tasks run in the correct order." },
+  { type:"img", src:"img/_placeholder.svg", caption:"Arena detection sequence" },
+
+  { type:"h2", text:"Conclusion" },
+  { type:"p",  text:"This project let us apply advanced real-time programming concepts — mutexes and semaphores for task synchronization. We implemented the required functionalities while keeping concurrent execution safe. The challenges made clear how important synchronization and resource management are in multithreaded programming." },
+
+  { type:"tags", items:["FreeRTOS", "C", "Real-time", "Mutexes", "Semaphores", "OpenCV"] }
+];
+
+function paintPage(){
+  document.title = "Project page format — preview";
+  $("detail").innerHTML = projectBody(DEMO)
+    + `<p><a class="btn" href="my-projects.html">&larr; ${t({fr:"Tous les projets",en:"All projects"})}</a></p>`;
+}
+
+</script>
+</body>
+</html>
