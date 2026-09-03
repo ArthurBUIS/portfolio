@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Courses 2024-2025 — Arthur Buis</title>
+<title>Courses 2024-2025 · Arthur Buis</title>
 <meta name="description" content="Courses followed by Arthur Buis in 2024-2025.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -31,9 +31,10 @@
 const YEAR = "2024-2025";
 function paintPage(){
   const y = COURSES[YEAR];
-  document.title = t({fr:"Cours",en:"Courses"}) + " " + YEAR + " — " + DATA.name;
-  $("y-school").textContent = t(y.school);
-  $("y-title").textContent  = t({fr:"Mes cours",en:"My Courses"}) + " \u2014 " + YEAR;
+  document.title = t({fr:"Cours",en:"Courses"}) + " " + YEAR + " · " + DATA.name;
+  $("y-school").innerHTML = y.schoolUrl
+    ? `<a href="${y.schoolUrl}" target="_blank" rel="noopener">${t(y.school)} ↗</a>` : t(y.school);
+  $("y-title").textContent  = t({fr:"Mes cours",en:"My Courses"}) + " \u00b7 " + YEAR;
   $("y-blurb").textContent  = t(y.programme);
 
   $("ynav").innerHTML = COURSES.years.map(v =>
@@ -48,7 +49,7 @@ function paintPage(){
         ${s.courses.map(c => `
           <details class="course-item">
             <summary>${t(c.title)}</summary>
-            ${c.meta ? `<p class="course-meta">${t(c.meta)}</p>` : ""}
+            ${(c.meta || c.grade) ? `<p class="course-meta">${[t(c.meta), c.grade ? (t({fr:"Note",en:"Grade"})+" : "+t(c.grade)) : ""].filter(Boolean).join("  ·  ")}</p>` : ""}
             <ul>${(t(c.content) || t(c.topics) || []).map(x=>`<li>${x}</li>`).join("")}</ul>
           </details>`).join("")}
       </div>`).join("");

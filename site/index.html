@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Arthur Buis — Portfolio</title>
-<meta name="description" content="Portfolio of Arthur Buis — Ecole Polytechnique graduate engineer in applied mathematics and computer science, incoming M.Sc. Bioinformatics student at DTU.">
+<title>Arthur Buis · Portfolio</title>
+<meta name="description" content="Portfolio of Arthur Buis, Ecole Polytechnique graduate engineer in applied mathematics and computer science, incoming M.Sc. Bioinformatics student at DTU.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -25,8 +25,7 @@
       <p class="hero-sub" id="h-role"></p>
       <p class="hero-desc" id="h-lede"></p>
       <div class="hero-cta">
-        <a class="btn" href="my-projects.html" id="h-cta1"></a>
-        <a class="btn btn-ghost" href="my-cv.html" id="h-cta2"></a>
+        <a class="btn" href="my-cv.html" id="h-cta2"></a>
       </div>
       <div class="hero-stats" id="stats"></div>
     </div>
@@ -62,17 +61,20 @@
 <script>
 
 function paintPage(){
-  document.title = DATA.name + " — Portfolio";
+  document.title = DATA.name + " · Portfolio";
   $("avatar").innerHTML = DATA.photo ? `<img src="${DATA.photo}" alt="${DATA.name}">` : DATA.initials;
-  "h-name h-role h-lede h-cta1 h-cta2".split(" ").forEach((id,i)=>{
-    document.getElementById(id).textContent = t([DATA.name,DATA.role,DATA.lede,DATA.cta1,DATA.cta2][i]);
+  "h-name h-role h-lede h-cta2".split(" ").forEach((id,i)=>{
+    document.getElementById(id).textContent = t([DATA.name,DATA.role,DATA.lede,DATA.cta2][i]);
   });
   $("t-exp").textContent   = t({fr:"Parcours Professionnel",en:"Professional Experience"});
   $("t-edu").textContent   = t({fr:"Formation",en:"Education"});
   $("t-skill").textContent = t({fr:"Domaines d'Expertise",en:"Areas of Expertise"});
   $("t-out").textContent   = t({fr:"Hors des écrans",en:"Away from the Screen"});
 
-  $("stats").innerHTML = DATA.stats.map(s=>`<div class="stat"><b>${s.v}</b><span>${t(s)}</span></div>`).join("");
+  $("stats").innerHTML = DATA.stats.map(s=>{
+    const inner = `<b>${s.v}</b><span>${t(s)}</span>`;
+    return s.href ? `<a class="stat" href="${s.href}">${inner}</a>` : `<div class="stat">${inner}</div>`;
+  }).join("");
 
   $("navcards").innerHTML = DATA.navcards.map(c=>`
     <a class="nav-card ${c.cls}" href="${c.href}">
@@ -90,7 +92,7 @@ function paintPage(){
       <div class="tl-icon">${i.icon}</div>
       <div class="tl-body">
         <h3>${t(i.role)}</h3>
-        <h4>${t(i.org)} &bull; ${t(i.when)}</h4>
+        <h4>${i.link ? `<a href="${i.link}" target="_blank" rel="noopener">${t(i.org)}</a>` : t(i.org)} &bull; ${t(i.when)}</h4>
         <p>${t(i.desc)}</p>
         <div class="tags">${i.tags.map(x=>`<span class="tag">${x}</span>`).join("")}</div>
       </div>

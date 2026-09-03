@@ -56,6 +56,15 @@ function projectBody(body){
     `<div class="content-block">${g.heading ? `<h2>${t(g.heading)}</h2>` : ""}${g.html}</div>`).join("");
 }
 
+/* "In brief" box shown above the project body: 3-5 quick-read bullets. */
+function projectHighlights(p){
+  if (!p || !Array.isArray(p.highlights) || !p.highlights.length) return "";
+  return `<div class="content-block highlights">
+      <h2>${t({ fr: "En bref", en: "In brief" })}</h2>
+      <ul>${p.highlights.map(x => `<li>${t(x)}</li>`).join("")}</ul>
+    </div>`;
+}
+
 const NAV = [
   { href: "index.html",                 label: { fr: "Accueil",     en: "Home" } },
   { href: "my-profile.html",            label: { fr: "À propos",    en: "About" } },
