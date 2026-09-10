@@ -1,0 +1,15 @@
+# Static site — no build step. Netlify just publishes the site/ folder.
+[build]
+  publish = "site"
+
+# Serve the styled 404 page for unknown paths.
+[[redirects]]
+  from = "/*"
+  to = "/404.html"
+  status = 404
+
+# Long-cache the versioned assets (?v=… busts them on change).
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"

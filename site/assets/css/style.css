@@ -374,9 +374,8 @@ details.pro-project[open]>summary{border-bottom:1px solid rgba(247,151,30,.18)}
 .site-footer a{color:rgba(255,255,255,.82)}
 .site-footer a:hover{color:#fff}
 .site-footer ul{list-style:none;display:flex;flex-direction:column;gap:9px}
-.footer-social{display:flex;gap:12px;flex-wrap:wrap}
-.footer-social a{display:inline-flex;align-items:center;gap:8px;padding:9px 18px;border-radius:25px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15)}
-.footer-social a:hover{background:var(--grad);border-color:transparent}
+.footer-links a{display:inline-flex;align-items:center;gap:8px}
+.fi{width:15px;height:15px;flex-shrink:0}
 .legal{margin-top:36px;padding-top:20px;border-top:1px solid rgba(255,255,255,.1);font-size:.85rem;color:rgba(255,255,255,.55);
   display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
 

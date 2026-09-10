@@ -5,11 +5,11 @@
    ============================================================ */
 const DATA = {
   initials: "AB",
-  photo: "",                                   /* ex: "img/photo.jpg" */
+  photo: "img/photo.jpg",
   name: "Arthur Buis",
   email: "arthur.buis@polytechnique.edu",
-  github: "https://github.com/",               /* TODO: URL exacte */
-  linkedin: "https://www.linkedin.com/in/",    /* TODO: URL exacte */
+  github: "https://github.com/ArthurBUIS",
+  linkedin: "https://www.linkedin.com/in/arthurbuis/",
   cv: "cv.pdf",
 
   role: {
