@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/style.css?v=2">
 </head>
 <body>
 <header class="site-header" data-chrome="header"></header>
@@ -22,8 +22,8 @@
 </div>
 <div class="page-container" id="prolist"></div>
 <footer class="site-footer" data-chrome="footer"></footer>
-<script src="assets/js/data.js"></script>
-<script src="assets/js/site.js"></script>
+<script src="assets/js/data.js?v=2"></script>
+<script src="assets/js/site.js?v=2"></script>
 <script>
 
 function paintPage(){
@@ -52,13 +52,12 @@ function paintPage(){
          : `<div class="proj-gallery">${p.figures.map(figure).join("")}</div>`)
       : "";
     return `
-    <details class="content-block pro-project">
+    <details class="content-block pro-project"${p.slug ? ` id="${p.slug}"` : ""}>
       <summary>
         <span class="pro-icon">${p.icon || ""}</span>
         <h2>${t(p.title)}</h2>
         <span class="pro-meta">${meta}</span>
         <span class="pro-desc">${t(p.description || p.summary)}</span>
-        ${topics.length ? `<span class="pro-topics">${topics.map(pill).join("")}</span>` : ""}
       </summary>
       <div class="pro-body">
         ${p.challenges ? `<h3>${t(L.challenges)}</h3>
@@ -71,6 +70,14 @@ function paintPage(){
       </div>
     </details>`;
   }).join("");
+
+  if (location.hash){
+    const el = document.querySelector(location.hash);
+    if (el && el.tagName === "DETAILS"){
+      el.open = true;
+      el.scrollIntoView({ block: "start" });
+    }
+  }
 }
 
 </script>

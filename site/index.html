@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/style.css?v=2">
 </head>
 <body>
 <header class="site-header" data-chrome="header"></header>
@@ -56,8 +56,8 @@
   <div class="grid" id="outside"></div>
 </section>
 <footer class="site-footer" data-chrome="footer"></footer>
-<script src="assets/js/data.js"></script>
-<script src="assets/js/site.js"></script>
+<script src="assets/js/data.js?v=2"></script>
+<script src="assets/js/site.js?v=2"></script>
 <script>
 
 function paintPage(){
@@ -89,12 +89,12 @@ function paintPage(){
 
   const tl = list => list.map(i=>`
     <article class="tl-item">
+      ${i.page ? `<a class="tl-card-link" href="${i.page}" aria-label="${esc(t(i.role))}"></a>` : ""}
       <div class="tl-icon">${i.icon}</div>
       <div class="tl-body">
         <h3>${t(i.role)}</h3>
-        <h4>${i.link ? `<a href="${i.link}" target="_blank" rel="noopener">${t(i.org)}</a>` : t(i.org)} &bull; ${t(i.when)}</h4>
+        <h4>${i.link ? `<a class="tl-org" href="${i.link}" target="_blank" rel="noopener">${t(i.org)}</a>` : t(i.org)} &bull; ${t(i.when)}</h4>
         <p>${t(i.desc)}</p>
-        <div class="tags">${i.tags.map(x=>`<span class="tag">${x}</span>`).join("")}</div>
       </div>
     </article>`).join("");
   $("exp").innerHTML = tl(DATA.experience);

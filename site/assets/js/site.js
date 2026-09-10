@@ -68,7 +68,7 @@ function projectHighlights(p){
 const NAV = [
   { href: "index.html",                 label: { fr: "Accueil",     en: "Home" } },
   { href: "my-profile.html",            label: { fr: "À propos",    en: "About" } },
-  { href: "my-courses-2021-2022.html",  label: { fr: "Cours",       en: "Courses" } },
+  { href: "my-courses-2025-2026.html",  label: { fr: "Cours",       en: "Courses" } },
   { href: "my-projects.html",           label: { fr: "Projets",     en: "Projects" } },
   { href: "my-pro-projects.html",       label: { fr: "Pro",         en: "Professional" } },
   { href: "my-cv.html",                 label: { fr: "CV",          en: "CV" } }
@@ -107,7 +107,8 @@ function chrome(){
             <h4>${esc(DATA.name)}</h4>
             <ul>
               <li><a href="mailto:${DATA.email}">${DATA.email}</a></li>
-              <li>${t({fr:"Région de Copenhague",en:"Copenhagen area"})}</li>
+              <li><a href="https://www.google.com/maps/search/?api=1&amp;query=%C3%98sterbrogade%20119%2C%202100%20K%C3%B8benhavn" target="_blank" rel="noopener">Østerbrogade 119, 2100 København</a></li>
+              <li><a href="tel:+33772200247">+33 7 72 20 02 47</a></li>
             </ul>
           </div>
           <div>
@@ -115,7 +116,7 @@ function chrome(){
             <ul>${NAV.slice(1).map(n => `<li><a href="${n.href}">${t(n.label)}</a></li>`).join("")}</ul>
           </div>
           <div>
-            <h4>${t({fr:"Ailleurs",en:"Elsewhere"})}</h4>
+            <h4>${t({fr:"Liens web",en:"Web links"})}</h4>
             <div class="footer-social">
               <a href="${DATA.github}" target="_blank" rel="noopener">GitHub</a>
               <a href="${DATA.linkedin}" target="_blank" rel="noopener">LinkedIn</a>
