@@ -7,8 +7,8 @@
 <meta name="description" content="Portfolio of Arthur Buis, Ecole Polytechnique graduate engineer in applied mathematics and computer science, incoming M.Sc. Bioinformatics student at DTU.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css?v=3">
+<link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600;700&family=Inter+Tight:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css?v=4">
 </head>
 <body>
 <header class="site-header" data-chrome="header"></header>
@@ -56,8 +56,8 @@
   <div class="grid" id="outside"></div>
 </section>
 <footer class="site-footer" data-chrome="footer"></footer>
-<script src="assets/js/data.js?v=3"></script>
-<script src="assets/js/site.js?v=3"></script>
+<script src="assets/js/data.js?v=4"></script>
+<script src="assets/js/site.js?v=4"></script>
 <script>
 
 function paintPage(){
@@ -90,10 +90,10 @@ function paintPage(){
   const tl = list => list.map(i=>`
     <article class="tl-item">
       ${i.page ? `<a class="tl-card-link" href="${i.page}" aria-label="${esc(t(i.role))}"></a>` : ""}
-      <div class="tl-icon">${i.icon}</div>
+      <div class="tl-when"><span class="tl-icon">${i.icon}</span><span class="when">${t(i.when)}</span></div>
       <div class="tl-body">
         <h3>${t(i.role)}</h3>
-        <h4>${i.link ? `<a class="tl-org" href="${i.link}" target="_blank" rel="noopener">${t(i.org)}</a>` : t(i.org)} &bull; ${t(i.when)}</h4>
+        <h4>${i.link ? `<a class="tl-org" href="${i.link}" target="_blank" rel="noopener">${t(i.org)}</a>` : t(i.org)}</h4>
         <p>${t(i.desc)}</p>
       </div>
     </article>`).join("");
@@ -110,6 +110,28 @@ function paintPage(){
   $("skills").innerHTML  = cards(DATA.skills);
   $("outside").innerHTML = cards(DATA.outside);
 }
+
+/* hero background: a viridis heatmap, the figure every genomics workflow produces */
+const VIRIDIS = ["#3E4A89","#31688E","#26828E","#1F9E89","#35B779","#6ECE58"];
+function buildMatrix(){
+  const el = document.querySelector(".hero-bg");
+  if (!el) return;
+  const cols = window.innerWidth < 880 ? 20 : 36, rows = 12;
+  el.style.display = "grid";
+  el.style.gap = "2px";
+  el.style.gridTemplateColumns = `repeat(${cols},1fr)`;
+  el.style.gridTemplateRows = `repeat(${rows},1fr)`;
+  let html = "";
+  for (let i = 0; i < cols * rows; i++){
+    const r = Math.floor(i / cols), c = i % cols;
+    const v = (Math.sin(c * .38) + Math.cos(r * .55) + Math.sin((c + r) * .21)) / 3;
+    const idx = Math.max(0, Math.min(5, Math.round((v + 1) * 2.6)));
+    html += `<i style="background:${VIRIDIS[idx]};animation-delay:${((c * 7 + r * 13) % 70) / 10}s"></i>`;
+  }
+  el.innerHTML = html;
+}
+let mrz; addEventListener("resize", () => { clearTimeout(mrz); mrz = setTimeout(buildMatrix, 200); });
+buildMatrix();
 
 </script>
 </body>
