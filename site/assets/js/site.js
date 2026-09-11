@@ -148,6 +148,10 @@ document.addEventListener("DOMContentLoaded", paint);
    and every subpage's page-hero alike).
    ------------------------------------------------------------------ */
 const VIRIDIS = ["#3E4A89","#31688E","#26828E","#1F9E89","#35B779","#6ECE58"];
+/* home hero: cols/rows fixed to its own look. Every subpage's page-hero
+   uses ITS OWN fixed cols/rows too (not measured per page), so every
+   secondary page renders the exact same grid size and cell size as the
+   next -- only the home hero is allowed to look different from the rest. */
 function buildHeatmaps(){
   document.querySelectorAll(".hero-bg").forEach(el => {
     const tall = el.closest(".hero") !== null;

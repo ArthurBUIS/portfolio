@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600;700&family=Inter+Tight:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css?v=8">
+<link rel="stylesheet" href="assets/css/style.css?v=18">
 </head>
 <body>
 <header class="site-header" data-chrome="header"></header>
@@ -24,9 +24,6 @@
       <h1 id="h-name"></h1>
       <p class="hero-sub" id="h-role"></p>
       <p class="hero-desc" id="h-lede"></p>
-      <div class="hero-cta">
-        <a class="btn" href="my-cv.html" id="h-cta2"></a>
-      </div>
       <div class="hero-stats" id="stats"></div>
     </div>
   </div>
@@ -56,15 +53,15 @@
   <div class="grid" id="outside"></div>
 </section>
 <footer class="site-footer" data-chrome="footer"></footer>
-<script src="assets/js/data.js?v=6"></script>
-<script src="assets/js/site.js?v=6"></script>
+<script src="assets/js/data.js?v=7"></script>
+<script src="assets/js/site.js?v=11"></script>
 <script>
 
 function paintPage(){
   document.title = DATA.name + " · Portfolio";
   $("avatar").innerHTML = DATA.photo ? `<img src="${DATA.photo}" alt="${DATA.name}">` : DATA.initials;
-  "h-name h-role h-lede h-cta2".split(" ").forEach((id,i)=>{
-    document.getElementById(id).textContent = t([DATA.name,DATA.role,DATA.lede,DATA.cta2][i]);
+  "h-name h-role h-lede".split(" ").forEach((id,i)=>{
+    document.getElementById(id).textContent = t([DATA.name,DATA.role,DATA.lede][i]);
   });
   $("t-exp").textContent   = t({fr:"Parcours Professionnel",en:"Professional Experience"});
   $("t-edu").textContent   = t({fr:"Formation",en:"Education"});

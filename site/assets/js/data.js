@@ -859,7 +859,7 @@ const DATA = {
 
   /* ---------- page "À propos" / About ---------- */
   profile: {
-    eyebrow:   { fr: "// À PROPOS", en: "// ABOUT ME" },
+    eyebrow:   { fr: "", en: "" },
     heading:   { fr: "Mon parcours", en: "My Background" },
     tagline:   { fr: "Ingénieur diplômé de l'École Polytechnique • Étudiant en master à DTU • IA pour la santé et les sciences du vivant",
                  en: "École Polytechnique graduate engineer • DTU master's student • AI for healthcare and life sciences" },
@@ -871,13 +871,13 @@ const DATA = {
       { icon: "💼", label: { fr: "Expérience", en: "Experience" },   value: { fr: "IA, NLP & vision par ordinateur", en: "AI, NLP & computer vision" } }
     ],
     story: {
-      eyebrow: { fr: "// MON HISTOIRE", en: "// MY STORY" },
+      eyebrow: { fr: "", en: "" },
       title:   { fr: "Mon parcours", en: "My Background" },
       body:    { fr: "Porté par une passion pour la programmation et les mathématiques, j'ai choisi la voie de l'ingénieur après un baccalauréat scientifique. Deux ans de classe préparatoire à Lyon m'ont mené, sur concours national, à l'<a href=\"https://www.polytechnique.edu/en\" target=\"_blank\" rel=\"noopener\">École Polytechnique</a> : trois ans de sciences avancées, sur un parcours orienté intelligence artificielle et mathématiques appliquées, complétés par une expérience professionnelle en stage dans le secteur tech.",
                  en: "Driven by a passion for programming and mathematics, I chose an engineering path after my scientific baccalauréat. Two years of preparatory classes for the French Engineering Schools in Lyon led, by competitive national examination, to <a href=\"https://www.polytechnique.edu/en\" target=\"_blank\" rel=\"noopener\">École Polytechnique</a>, then three years of advanced science on a track focused on artificial intelligence and applied mathematics, alongside professional experience through internships in the tech industry." }
     },
     choices: {
-      eyebrow: { fr: "// MES MOTIVATIONS", en: "// MY MOTIVATIONS" },
+      eyebrow: { fr: "", en: "" },
       title:   { fr: "Mes choix", en: "My Choices" },
       items: [
         { icon: "🏛️",
@@ -893,7 +893,7 @@ const DATA = {
       ]
     },
     closing: {
-      eyebrow: { fr: "// À DTU", en: "// AT DTU" },
+      title:   { fr: "La suite", en: "What's next" },
       body:    { fr: "Je recherche activement un poste d'assistant étudiant dans la région de Copenhague, en IA / data science pour la santé.",
                  en: "I'm actively looking for a student assistant position in the Copenhagen area, in AI / data science for healthcare." }
     }
