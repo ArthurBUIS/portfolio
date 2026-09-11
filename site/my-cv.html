@@ -8,14 +8,14 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600;700&family=Inter+Tight:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css?v=4">
+<link rel="stylesheet" href="assets/css/style.css?v=8">
 </head>
 <body>
 <header class="site-header" data-chrome="header"></header>
 
 <div class="page-hero">
+  <div class="hero-bg"></div>
   <div class="page-hero-in">
-    <span class="badge" id="c-badge"></span>
     <h1 id="c-title"></h1>
     <p style="margin-top:26px"><a class="btn btn-ghost" id="c-dl" href="cv.pdf" download></a></p>
   </div>
@@ -24,13 +24,12 @@
   <iframe class="cv-frame" id="c-frame" title="CV"></iframe>
 </div>
 <footer class="site-footer" data-chrome="footer"></footer>
-<script src="assets/js/data.js?v=4"></script>
-<script src="assets/js/site.js?v=4"></script>
+<script src="assets/js/data.js?v=6"></script>
+<script src="assets/js/site.js?v=6"></script>
 <script>
 
 function paintPage(){
   document.title = "CV · " + DATA.name;
-  $("c-badge").textContent = t({fr:"Curriculum vitae",en:"Curriculum vitae"});
   $("c-title").textContent = t({fr:"Mon CV",en:"My CV"});
   $("c-dl").textContent    = t({fr:"Télécharger le PDF",en:"Download the PDF"});
   $("c-dl").href = DATA.cv;

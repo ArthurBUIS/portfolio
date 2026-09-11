@@ -141,3 +141,31 @@ function paint(){
   if (typeof paintPage === "function") paintPage();
 }
 document.addEventListener("DOMContentLoaded", paint);
+
+/* ------------------------------------------------------------------
+   Hero heatmap: the viridis colormap figure every genomics workflow
+   produces, drawn into every ".hero-bg" element (the tall home hero
+   and every subpage's page-hero alike).
+   ------------------------------------------------------------------ */
+const VIRIDIS = ["#3E4A89","#31688E","#26828E","#1F9E89","#35B779","#6ECE58"];
+function buildHeatmaps(){
+  document.querySelectorAll(".hero-bg").forEach(el => {
+    const tall = el.closest(".hero") !== null;
+    const cols = window.innerWidth < 880 ? (tall ? 20 : 26) : (tall ? 36 : 46);
+    const rows = tall ? 12 : 5;
+    el.style.display = "grid";
+    el.style.gap = "2px";
+    el.style.gridTemplateColumns = `repeat(${cols},1fr)`;
+    el.style.gridTemplateRows = `repeat(${rows},1fr)`;
+    let html = "";
+    for (let i = 0; i < cols * rows; i++){
+      const r = Math.floor(i / cols), c = i % cols;
+      const v = (Math.sin(c * .38) + Math.cos(r * .55) + Math.sin((c + r) * .21)) / 3;
+      const idx = Math.max(0, Math.min(5, Math.round((v + 1) * 2.6)));
+      html += `<i style="background:${VIRIDIS[idx]};animation-delay:${((c * 7 + r * 13) % 70) / 10}s"></i>`;
+    }
+    el.innerHTML = html;
+  });
+}
+let hrz; addEventListener("resize", () => { clearTimeout(hrz); hrz = setTimeout(buildHeatmaps, 200); });
+document.addEventListener("DOMContentLoaded", buildHeatmaps);

@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600;700&family=Inter+Tight:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css?v=4">
+<link rel="stylesheet" href="assets/css/style.css?v=8">
 </head>
 <body>
 <header class="site-header" data-chrome="header"></header>
@@ -56,8 +56,8 @@
   <div class="grid" id="outside"></div>
 </section>
 <footer class="site-footer" data-chrome="footer"></footer>
-<script src="assets/js/data.js?v=4"></script>
-<script src="assets/js/site.js?v=4"></script>
+<script src="assets/js/data.js?v=6"></script>
+<script src="assets/js/site.js?v=6"></script>
 <script>
 
 function paintPage(){
@@ -110,28 +110,6 @@ function paintPage(){
   $("skills").innerHTML  = cards(DATA.skills);
   $("outside").innerHTML = cards(DATA.outside);
 }
-
-/* hero background: a viridis heatmap, the figure every genomics workflow produces */
-const VIRIDIS = ["#3E4A89","#31688E","#26828E","#1F9E89","#35B779","#6ECE58"];
-function buildMatrix(){
-  const el = document.querySelector(".hero-bg");
-  if (!el) return;
-  const cols = window.innerWidth < 880 ? 20 : 36, rows = 12;
-  el.style.display = "grid";
-  el.style.gap = "2px";
-  el.style.gridTemplateColumns = `repeat(${cols},1fr)`;
-  el.style.gridTemplateRows = `repeat(${rows},1fr)`;
-  let html = "";
-  for (let i = 0; i < cols * rows; i++){
-    const r = Math.floor(i / cols), c = i % cols;
-    const v = (Math.sin(c * .38) + Math.cos(r * .55) + Math.sin((c + r) * .21)) / 3;
-    const idx = Math.max(0, Math.min(5, Math.round((v + 1) * 2.6)));
-    html += `<i style="background:${VIRIDIS[idx]};animation-delay:${((c * 7 + r * 13) % 70) / 10}s"></i>`;
-  }
-  el.innerHTML = html;
-}
-let mrz; addEventListener("resize", () => { clearTimeout(mrz); mrz = setTimeout(buildMatrix, 200); });
-buildMatrix();
 
 </script>
 </body>
