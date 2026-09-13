@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600;700&family=Inter+Tight:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css?v=18">
+<link rel="stylesheet" href="assets/css/style.css?v=23">
 </head>
 <body>
 <header class="site-header" data-chrome="header"></header>
@@ -23,8 +23,8 @@
 </div>
 <div class="page-container" id="detail"></div>
 <footer class="site-footer" data-chrome="footer"></footer>
-<script src="assets/js/data.js?v=7"></script>
-<script src="assets/js/site.js?v=11"></script>
+<script src="assets/js/data.js?v=14"></script>
+<script src="assets/js/site.js?v=12"></script>
 <script>
 
 const SLUG = "llm-code-generation";
@@ -32,7 +32,7 @@ function paintPage(){
   const p = DATA.projects.find(x => x.slug === SLUG);
   document.title = t(p.title) + " · " + DATA.name;
   $("d-when").textContent    = t(p.when);
-  $("d-title").textContent   = p.icon + " " + t(p.title);
+  $("d-title").textContent   = t(p.title);
   $("d-summary").textContent = t(p.summary);
   const back = `<p><a class="btn" href="my-projects.html">&larr; ${t({fr:"Tous les projets",en:"All projects"})}</a></p>`;
   if (Array.isArray(p.body) && p.body.length){

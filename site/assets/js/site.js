@@ -73,8 +73,8 @@ const NAV = [
   { href: "index.html",                 label: { fr: "Accueil",     en: "Home" } },
   { href: "my-profile.html",            label: { fr: "À propos",    en: "About" } },
   { href: "my-courses-2025-2026.html",  label: { fr: "Cours",       en: "Courses" } },
-  { href: "my-projects.html",           label: { fr: "Projets",     en: "Projects" } },
-  { href: "my-pro-projects.html",       label: { fr: "Pro",         en: "Professional" } },
+  { href: "my-projects.html",           label: { fr: "Projets<br>Académiques",     en: "Academic<br>Projects" } },
+  { href: "my-pro-projects.html",       label: { fr: "Projets<br>Professionnels",       en: "Professional<br>Projects" } },
   { href: "my-cv.html",                 label: { fr: "CV",          en: "CV" } }
 ];
 
