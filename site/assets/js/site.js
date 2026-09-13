@@ -39,7 +39,7 @@ function projectBody(body){
       case "p":       return `<p>${t(b.text)}</p>`;
       case "ul":      return `<ul>${b.items.map(x => `<li>${t(x)}</li>`).join("")}</ul>`;
       case "img":     return fig(b.src, b.caption);
-      case "gallery": return `<div class="proj-gallery">${b.items.map(it => fig(it.src, it.caption)).join("")}</div>`;
+      case "gallery": return `<div class="proj-gallery"${b.cols ? ` style="grid-template-columns:repeat(${b.cols},1fr)"` : ""}>${b.items.map(it => fig(it.src, it.caption)).join("")}</div>`;
       case "code":    return `<pre class="proj-code"><code>${esc(b.text)}</code></pre>`;
       case "table":   return `<div class="proj-table-wrap"><table class="proj-table">`
         + `<thead><tr>${b.head.map(h => `<th>${t(h)}</th>`).join("")}</tr></thead>`
@@ -72,7 +72,7 @@ function projectHighlights(p){
 const NAV = [
   { href: "index.html",                 label: { fr: "Accueil",     en: "Home" } },
   { href: "my-profile.html",            label: { fr: "À propos",    en: "About" } },
-  { href: "my-courses-2025-2026.html",  label: { fr: "Cours",       en: "Courses" } },
+  { href: "my-courses-2026-2027.html",  label: { fr: "Cours",       en: "Courses" } },
   { href: "my-projects.html",           label: { fr: "Projets<br>Académiques",     en: "Academic<br>Projects" } },
   { href: "my-pro-projects.html",       label: { fr: "Projets<br>Professionnels",       en: "Professional<br>Projects" } },
   { href: "my-cv.html",                 label: { fr: "CV",          en: "CV" } }

@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600;700&family=Inter+Tight:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css?v=23">
+<link rel="stylesheet" href="assets/css/style.css?v=25">
 </head>
 <body>
 <header class="site-header" data-chrome="header"></header>
@@ -22,8 +22,8 @@
 </div>
 <div class="page-container projects-list" id="plist"></div>
 <footer class="site-footer" data-chrome="footer"></footer>
-<script src="assets/js/data.js?v=14"></script>
-<script src="assets/js/site.js?v=12"></script>
+<script src="assets/js/data.js?v=31"></script>
+<script src="assets/js/site.js?v=14"></script>
 <script>
 
 function paintPage(){
@@ -32,10 +32,7 @@ function paintPage(){
   $("pr-sub").textContent   = t({fr:"Projets de recherche appliquée menés à l'École Polytechnique et en classe préparatoire.",
                             en:"Applied research projects carried out at École Polytechnique and in classe préparatoire."});
 
-  const years = [...new Set(DATA.projects.map(p=>p.year))];
-  $("plist").innerHTML = years.map(y=>`
-    <h2>${y}</h2>
-    <ul>${DATA.projects.filter(p=>p.year===y).map(p=>`
+  $("plist").innerHTML = `<ul>${DATA.projects.map(p=>`
       <li><a class="project-row" href="${p.slug}.html">
         <div class="project-row-body">
           <h3>${t(p.title)}</h3>
@@ -43,8 +40,7 @@ function paintPage(){
           <p>${t(p.listSummary || p.summary)}</p>
         </div>
         <span class="go">&rarr;</span>
-      </a></li>`).join("")}</ul>
-    <div class="year-sep"></div>`).join("");
+      </a></li>`).join("")}</ul>`;
 }
 
 </script>

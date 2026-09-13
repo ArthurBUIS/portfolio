@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Courses 2021-2022 · Arthur Buis</title>
-<meta name="description" content="Courses followed by Arthur Buis in 2021-2022.">
+<title>Courses 2026-2027 · Arthur Buis</title>
+<meta name="description" content="Courses followed by Arthur Buis in 2026-2027.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600;700&family=Inter+Tight:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -29,13 +29,13 @@
 <script src="assets/js/site.js?v=14"></script>
 <script>
 
-const YEAR = "2021-2022";
+const YEAR = "2026-2027";
 function paintPage(){
   const y = COURSES[YEAR];
   document.title = t({fr:"Cours",en:"Courses"}) + " " + YEAR + " · " + DATA.name;
   $("y-school").innerHTML = y.schoolUrl
     ? `<a href="${y.schoolUrl}" target="_blank" rel="noopener">${t(y.school)} ↗</a>` : t(y.school);
-  $("y-title").textContent  = t({fr:"Mes cours",en:"My Courses"}) + " \u00b7 " + YEAR;
+  $("y-title").textContent  = t({fr:"Mes cours",en:"My Courses"}) + " · " + YEAR;
   $("y-blurb").textContent  = t(y.programme);
 
   $("ynav").innerHTML = [...COURSES.years].reverse().map(v =>
