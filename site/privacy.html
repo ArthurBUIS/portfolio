@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600;700&family=Inter+Tight:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css?v=25">
+<link rel="stylesheet" href="assets/css/style.css?v=27">
 </head>
 <body>
 <header class="site-header" data-chrome="header"></header>
@@ -19,19 +19,21 @@
 </div>
 <div class="page-container"><div class="content-block" id="pv"></div></div>
 <footer class="site-footer" data-chrome="footer"></footer>
-<script src="assets/js/data.js?v=31"></script>
-<script src="assets/js/site.js?v=14"></script>
+<script src="assets/js/data.js?v=35"></script>
+<script src="assets/js/site.js?v=15"></script>
 <script>
 
 function paintPage(){
   document.title = t({fr:"Confidentialité",en:"Privacy"}) + " · " + DATA.name;
   $("pv-title").textContent = t({fr:"Confidentialité",en:"Privacy"});
   $("pv").innerHTML = `
-    <p>${t({fr:"Ce site est un site statique. Il ne dépose aucun cookie, n'utilise aucun outil de mesure d'audience et ne collecte aucune donnée personnelle sur ses visiteurs.",
-             en:"This is a static site. It sets no cookies, uses no analytics, and collects no personal data about its visitors."})}</p>
-    <p>${t({fr:"Les polices de caractères sont chargées depuis Google Fonts, qui peut enregistrer votre adresse IP. Pour l'éviter, héberge les polices toi-même.",
-             en:"Fonts are loaded from Google Fonts, which may log your IP address. To avoid this, self-host the fonts instead."})}</p>
-    <p>${t({fr:"Pour toute question :",en:"Any questions:"})} <a href="mailto:${DATA.email}">${DATA.email}</a></p>`;
+    <p>${t({fr:"Ce site est statique, il ne dépose aucun cookie, n'utilise aucun outil de mesure d'audience et ne collecte aucune donnée personnelle sur ses visiteurs.",
+             en:"This website is static, it sets no cookies, uses no analytics, and collects no personal data about its visitors."})}</p>
+    <p>${t({fr:"Les polices sont chargées depuis Google Fonts, qui peut enregistrer votre adresse IP. Pour l'éviter, vous pouvez héberger les polices vous-même.",
+             en:"The fonts are loaded from Google Fonts, which may log your IP address. To avoid this, you can self-host the fonts instead."})}</p>
+    <p>${t({fr:"Ce site est toutefois hébergé sur Netlify, dont l'infrastructure peut enregistrer les adresses IP des visiteurs indépendamment du code de ce site.",
+             en:"However, this site is hosted on Netlify, whose infrastructure may log visitor IP addresses independently of this website's own code."})}</p>
+    <p>${t({fr:"Pour toute question, vous pouvez m'écrire à :",en:"If you have any questions, you can ask me at"})} <a href="mailto:${DATA.email}">${DATA.email}</a></p>`;
 }
 
 </script>

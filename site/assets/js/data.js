@@ -10,7 +10,7 @@ const DATA = {
   email: "arthur.buis@polytechnique.edu",
   github: "https://github.com/ArthurBUIS",
   linkedin: "https://www.linkedin.com/in/arthurbuis/",
-  cv: "cv.pdf?v=2",
+  cv: "cv.pdf?v=3",
 
   dtuLine: {
     fr: "Actuellement en M.Sc. à DTU • Bioinformatique",
@@ -521,12 +521,12 @@ const DATA = {
       highlights: [
         { fr: "Projet scientifique collectif encadré par Lokad : concevoir un système fondé sur un LLM qui génère et corrige du code dans Envision, un DSL (langage spécifique à un domaine) quasi absent des données d'entraînement des modèles.",
           en: "Lokad-tutored team research project: designing an LLM-based system that generates and fixes code in Envision, a DSL (Domain-Specific Language) almost absent from model training data." },
-        { fr: "Référence en prompt engineering, puis RAG « from scratch », RAG hybride (un second LLM propose fonctions et chapitres de grammaire), enfin reconstruction sur LangChain / LangGraph avec FAISS.",
-          en: "Prompt-engineering baseline, then from-scratch RAG, hybrid RAG (a second LLM proposes functions and grammar chapters), finally a rebuild on LangChain / LangGraph with FAISS." },
-        { fr: "Évaluation automatisée par un LLM « juge » doublée d'un passage au compilateur ; benchmark porté à 73 challenges.",
-          en: "Automated evaluation by a \"judge\" LLM alongside a compiler pass; benchmark grown to 73 challenges." },
-        { fr: "Le RAG hybride fait passer le score de 8,5 à 10 / 15 : le goulot d'étranglement est l'accès à la bonne information, pas le raisonnement.",
-          en: "Hybrid RAG lifts the score from 8.5 to 10 / 15: the bottleneck is access to the right information, not reasoning." },
+        { fr: "Référence en prompt engineering, puis exploration de méthodes RAG, enfin reconstruction sur LangChain / LangGraph avec FAISS.",
+          en: "Prompt-engineering baseline, then exploration of RAG methods, and finally a rebuild on LangChain / LangGraph with FAISS." },
+        { fr: "Évaluation automatisée par un LLM « juge » doublée d'un passage au compilateur, avec un benchmark porté à 73 challenges.",
+          en: "Automated evaluation by a \"judge\" LLM alongside a compiler pass, with a benchmark grown to 73 challenges." },
+        { fr: "Notre méthode de RAG hybride a été la meilleure amélioration : le goulot d'étranglement est l'accès à la bonne information, pas le raisonnement.",
+          en: "Our hybrid RAG method was the best improvement: the bottleneck is access to the right information, not reasoning." },
         { fr: "Stack : Python, LangChain / LangGraph, FAISS, Sentence-Transformers, OpenAI API.",
           en: "Stack: Python, LangChain / LangGraph, FAISS, Sentence-Transformers, OpenAI API." }
       ],
@@ -836,12 +836,12 @@ const DATA = {
   ],
 
   skills: [
-    { icon: "🕸️", title: {fr:"Deep Learning",en:"Deep learning"}, items: {fr:"RNN • LSTM • Transformers • GNN • VLM",en:"RNN • LSTM • Transformers • GNN • VLM"} },
-    { icon: "💬", title: {fr:"LLM & NLP",en:"LLMs & NLP"}, items: {fr:"LangChain • vLLM • RAG • Agents conversationnels",en:"LangChain • vLLM • RAG • Conversational agents"} },
     { icon: "👁️", title: {fr:"Vision par ordinateur",en:"Computer vision"}, items: {fr:"OpenCV • YOLO • MediaPipe • Segmentation • Stitching",en:"OpenCV • YOLO • MediaPipe • Segmentation • Stitching"} },
-    { icon: "⌨️", title: {fr:"Langages",en:"Programming languages"}, items: {fr:"Python (avancé) • OCaml • C • Java • JavaScript • R • SQL • HTML/CSS",en:"Python (advanced) • OCaml • C • Java • JavaScript • R • SQL • HTML/CSS"} },
-    { icon: "⚙️", title: {fr:"Outils & calcul",en:"Tools & computing"}, items: {fr:"Git • GitHub • Docker • Linux (shell) • Slurm • MPI • OpenMP",en:"Git • GitHub • Docker • Linux (shell) • Slurm • MPI • OpenMP"} },
-    { icon: "🧠", title: {fr:"Stack de Machine Learning",en:"Machine learning stack"}, items: {fr:"PyTorch • TensorFlow • Scikit-learn • Hugging Face",en:"PyTorch • TensorFlow • Scikit-learn • Hugging Face"} }
+    { icon: "⌨️", title: {fr:"Langages",en:"Programming languages"}, items: {fr:"Python (avancé) • OCaml • C • Java • R • SQL • TypeScript • JavaScript",en:"Python (advanced) • OCaml • C • Java • R • SQL • TypeScript • JavaScript"} },
+    { icon: "🧠", title: {fr:"Machine et Deep Learning",en:"Machine and deep learning"}, items: {fr:"PyTorch • TensorFlow • Scikit-learn • RNN • LSTM • Transformers • VLM",en:"PyTorch • TensorFlow • Scikit-learn • RNN • LSTM • Transformers • VLM"} },
+    { icon: "📊", title: {fr:"Data Science",en:"Data science"}, items: {fr:"Analyse de données • Web scraping • Bases de données de graphes • Traitement du signal",en:"Data analysis • Web scraping • Graph databases • Signal processing"} },
+    { icon: "⚙️", title: {fr:"Outils & calcul",en:"Tools and computing"}, items: {fr:"Git • GitHub • Docker • Linux (shell) • Slurm • MPI • OpenMP • CUDA",en:"Git • GitHub • Docker • Linux (shell) • Slurm • MPI • OpenMP • CUDA"} },
+    { icon: "💬", title: {fr:"LLM & NLP",en:"LLMs and NLP"}, items: {fr:"RAG • LangChain • vLLM • Plongements lexicaux",en:"RAG • LangChain • vLLM • Word embeddings"} }
   ],
 
   outside: [
@@ -901,8 +901,8 @@ const DATA = {
     },
     closing: {
       title:   { fr: "La suite", en: "What's next" },
-      body:    { fr: "Je recherche activement un poste d'assistant étudiant dans la région de Copenhague, en IA / data science pour la santé.",
-                 en: "I'm actively looking for a student assistant position in the Copenhagen area, in AI / data science for healthcare." }
+      body:    { fr: "Je recherche activement un poste d'assistant étudiant dans la région de Copenhague, en IA ou data science, de préférence dans le domaine de la santé et des sciences de la vie.",
+                 en: "I am actively looking for a student assistant position in the Copenhagen area, in AI or data science, preferably in the field of healthcare and life sciences." }
     }
   }
 };

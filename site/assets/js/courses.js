@@ -472,8 +472,8 @@ const COURSES = {
     school: { fr: "Technical University of Denmark", en: "Technical University of Denmark" },
     schoolUrl: "https://www.dtu.dk/english/education/graduate/msc-programmes/bioinformatics",
     programme: { fr: "M.Sc. en Bioinformatique, premi\u00e8re ann\u00e9e", en: "M.Sc. in Bioinformatics, first year" },
-    blurb: { fr: "Je pr\u00e9vois de suivre 12 cours scientifiques au cours de la premi\u00e8re ann\u00e9e de mon M.Sc., \u00e0 l'intersection de la biologie, des sciences du vivant, de la data science et de l'IA.",
-             en: "I am planning to follow 12 scientific courses during the first year of my M.Sc., at the intersection of biology, life sciences, data science and AI." },
+    blurb: { fr: "Pour la premi\u00e8re ann\u00e9e de mon M.Sc., j'ai choisi de suivre 12 cours scientifiques \u00e0 l'intersection de la biologie, des sciences du vivant, de la data science et de l'IA.",
+             en: "For the first year of my M.Sc., I have chosen to follow 12 scientific courses at the intersection of biology, life sciences, data science and AI." },
     semesters: [
       { name: { fr: "Premier semestre, Ao\u00fbt 2026 \u2192 D\u00e9cembre 2026", en: "Fall period, August 2026 \u2192 December 2026" },
         courses: [

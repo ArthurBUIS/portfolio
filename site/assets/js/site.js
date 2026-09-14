@@ -108,7 +108,7 @@ function chrome(){
       <div class="wrap">
         <div class="footer-cols">
           <div>
-            <h4>${esc(DATA.name)}</h4>
+            <h4>${t({fr:"Mes coordonnées",en:"My contact details"})}</h4>
             <ul>
               <li><a href="mailto:${DATA.email}">${DATA.email}</a></li>
               <li><a href="https://www.google.com/maps/search/?api=1&amp;query=%C3%98sterbrogade%20119%2C%202100%20K%C3%B8benhavn" target="_blank" rel="noopener">Østerbrogade 119, 2100 København</a></li>
