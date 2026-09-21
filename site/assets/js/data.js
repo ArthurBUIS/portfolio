@@ -738,7 +738,7 @@ const DATA = {
       topics: ["Computer vision", "Real-time", "GPU pipeline", "Image stitching", "Parallax"],
       org: "Noro",
       orgUrl: "https://www.noro.co",
-      when: { fr: "Mars à Juillet 2026 • New York", en: "Mar. to July 2026 • New York" },
+      when: { fr: "Mars à Août 2026 • New York", en: "Mar. to Aug. 2026 • New York" },
       kind: { fr: "Stage de fin d'études (R&D)", en: "Final-year internship (R&D)" },
       description: { fr: "Noro développe une solution de visioconférence immersive (matériel et logiciel) permettant à des équipes distantes de collaborer à taille réelle, comme si elles se trouvaient dans la même pièce. Cette solution repose sur plusieurs caméras pour couvrir un large champ visuel. Mes missions : mettre au point une méthode de fusion de vidéos et développer un prototype de pipeline combinant en temps réel les images de deux caméras fixes à champs recouvrants en une seule vidéo à large champ ; contribuer ponctuellement au Portal Agent, l'application de production.",
                      en: "Noro builds an immersive video-conferencing solution (hardware and software) that lets remote teams collaborate at true scale, as if they were in the same room. The solution relies on multiple cameras to cover a wide field of view. My missions: develop a video-fusion method and a pipeline prototype that combines, in real time, the feeds of two fixed overlapping cameras into a single wide-field video; and contribute occasionally to the Portal Agent, the production app." },
