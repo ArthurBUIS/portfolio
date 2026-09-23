@@ -10,7 +10,7 @@ const DATA = {
   email: "arthur.buis@polytechnique.edu",
   github: "https://github.com/ArthurBUIS",
   linkedin: "https://www.linkedin.com/in/arthurbuis/",
-  cv: "cv.pdf?v=3",
+  cv: "cv.pdf?v=4",
 
   dtuLine: {
     fr: "Actuellement en M.Sc. à DTU • Bioinformatique",
